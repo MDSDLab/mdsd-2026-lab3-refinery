@@ -1,0 +1,148 @@
+import builtin::view.
+// Metamodel
+% % Please do not modify the metamodel.
+enum Type {
+    UNDEFINED,
+    ERROR,
+    ANY,
+    STRING,
+    INTEGER,
+    BOOLEAN,
+    ELEMENT
+}
+abstract class NamedElement {
+    string name
+}
+class Variable extends NamedElement {
+    contains Expression value
+}
+class TestCase extends NamedElement {
+    contains BlockStatement[] body
+}
+class BlockStatement extends Statement {
+    contains Statement[] statements
+    contains Variable[] variables
+}
+abstract class Statement.
+class OpenStatement extends Statement {
+    contains Expression url
+}
+class WaitStatement extends Statement {
+    contains Expression seconds
+}
+class IfStatement extends Statement {
+    contains Expression condition
+    contains BlockStatement then
+    contains BlockStatement else
+}
+class ClickStatement extends Statement {
+    contains Expression element
+    boolean isDoubleClick
+}
+class FillStatement extends Statement {
+    contains Expression element
+    contains Expression value
+}
+abstract class Expression.
+class StringExpression extends Expression {
+    string value
+}
+class IntegerExpression extends Expression {
+    int value
+}
+class BooleanExpression extends Expression {
+    boolean value
+}
+class ElementExpression extends Expression {
+    string tag
+    string label
+}
+class VariableExpression extends Expression {
+    Variable variable
+}
+
+% % Please do not modify anything above this line.
+
+// Predicates
+% % Write your predicates and error predicates here
+
+% Task: Write an error predicate to make sure there are no BlockStatement elements
+% that do not contain any statements.
+error pred emptyBlockStatement(node s) <->
+    false.
+
+
+% Task: Write an error predicate to make sure there ar no IfStatement elements
+% that do not contain a "then" block.
+error pred emptyIfStatement(node s) <->
+    false.
+
+// Instace model
+% % You may modify the instance model according to the task description
+
+declare variable1, variable3, integerExpression2, variableExpression2,
+	stringExpression1, booleanExpression1, 
+    elementExpression2, waitStatement2, waitStatement1,
+    blockStatement2, testCase1, blockStatement1,
+	blockStatement4, clickStatement1, openStatement1,
+	ifStatement1, blockStatement3.
+!exists(Variable::new).
+!exists(TestCase::new).
+!exists(BlockStatement::new).
+!exists(OpenStatement::new).
+!exists(WaitStatement::new).
+!exists(IfStatement::new).
+!exists(ClickStatement::new).
+!exists(FillStatement::new).
+!exists(StringExpression::new).
+!exists(IntegerExpression::new).
+!exists(BooleanExpression::new).
+!exists(ElementExpression::new).
+!exists(VariableExpression::new).
+Variable(variable1).
+Variable(variable3).
+IntegerExpression(integerExpression1).
+IntegerExpression(integerExpression2).
+VariableExpression(variableExpression2).
+StringExpression(stringExpression1).
+BooleanExpression(booleanExpression1).
+ElementExpression(elementExpression2).
+WaitStatement(waitStatement2).
+WaitStatement(waitStatement1).
+BlockStatement(blockStatement2).
+TestCase(testCase1).
+BlockStatement(blockStatement1).
+BlockStatement(blockStatement4).
+ClickStatement(clickStatement1).
+OpenStatement(openStatement1).
+IfStatement(ifStatement1).
+BlockStatement(blockStatement3).
+Variable::value(variable3, stringExpression1).
+body(testCase1, blockStatement2).
+body(testCase1, blockStatement1).
+body(testCase1, blockStatement3).
+statements(blockStatement2, clickStatement1).
+statements(blockStatement2, openStatement1).
+statements(blockStatement1, waitStatement1).
+statements(blockStatement1, ifStatement1).
+statements(blockStatement3, waitStatement2).
+variables(blockStatement2, variable1).
+variables(blockStatement1, variable3).
+url(openStatement1, variableExpression2).
+seconds(waitStatement2, integerExpression1).
+seconds(waitStatement1, integerExpression2).
+condition(ifStatement1, booleanExpression1).
+else(ifStatement1, blockStatement4).
+ClickStatement::element(clickStatement1, elementExpression2).
+default !variable(*, *).
+variable(variableExpression2, variable3).
+name(variable1): "".
+name(variable3): "variable3".
+name(testCase1): "".
+!isDoubleClick(clickStatement1).
+StringExpression::value(stringExpression1): "stringValue".
+IntegerExpression::value(integerExpression1): 4.
+IntegerExpression::value(integerExpression2): 11.
+BooleanExpression::value(booleanExpression1).
+tag(elementExpression2): "elementTag".
+label(elementExpression2): "elementLabel".

@@ -1,0 +1,107 @@
+// Expected result
+simpleQuery(variable3).
+simpleQuery(variable1).
+expressionType(variableExpression2, STRING).
+expressionType(elementExpression2, ELEMENT).
+expressionType(stringExpression1, STRING).
+expressionType(booleanExpression1, BOOLEAN).
+expressionType(stringExpression2, STRING).
+expressionType(elementExpression1, ELEMENT).
+expressionType(integerExpression2, INTEGER).
+equalStringExpression(stringExpression2, stringExpression1).
+equalStringExpression(stringExpression1, stringExpression2).
+equalElementExpression(elementExpression1, elementExpression2).
+equalElementExpression(elementExpression2, elementExpression1).
+waitSecondsNotInteger(waitStatement2).
+longWait(waitStatement1).
+variableExpressionLoop(variableExpression1).
+blockStatementWithThreeStatements(blockStatement2).
+emptyName(variable1).
+emptyName(testCase1).
+
+default !simpleQuery(*).
+default !expressionType(*, *).
+default !equalStringExpression(*, *).
+default !equalElementExpression(*, *).
+default !waitSecondsNotInteger(*).
+default !longWait(*).
+default !variableExpressionLoop(*).
+default !blockStatementWithThreeStatements(*).
+default !emptyName(*).
+
+// Instance model
+declare variable1, variable3, integerExpression2, variableExpression2,
+	stringExpression1, booleanExpression1, stringExpression2,
+	elementExpression1, elementExpression2, waitStatement2, waitStatement1,
+	variableExpression1, blockStatement2, testCase1, blockStatement1,
+	blockStatement4, clickStatement1, openStatement1, openStatement3,
+	ifStatement1, blockStatement3.
+!exists(Variable::new).
+!exists(TestCase::new).
+!exists(BlockStatement::new).
+!exists(OpenStatement::new).
+!exists(WaitStatement::new).
+!exists(IfStatement::new).
+!exists(ClickStatement::new).
+!exists(FillStatement::new).
+!exists(StringExpression::new).
+!exists(IntegerExpression::new).
+!exists(BooleanExpression::new).
+!exists(ElementExpression::new).
+!exists(VariableExpression::new).
+Variable(variable1).
+Variable(variable3).
+IntegerExpression(integerExpression2).
+VariableExpression(variableExpression2).
+StringExpression(stringExpression1).
+BooleanExpression(booleanExpression1).
+StringExpression(stringExpression2).
+ElementExpression(elementExpression1).
+ElementExpression(elementExpression2).
+WaitStatement(waitStatement2).
+WaitStatement(waitStatement1).
+VariableExpression(variableExpression1).
+BlockStatement(blockStatement2).
+TestCase(testCase1).
+BlockStatement(blockStatement1).
+BlockStatement(blockStatement4).
+ClickStatement(clickStatement1).
+OpenStatement(openStatement1).
+OpenStatement(openStatement3).
+IfStatement(ifStatement1).
+BlockStatement(blockStatement3).
+Variable::value(variable1, variableExpression1).
+Variable::value(variable3, stringExpression2).
+body(testCase1, blockStatement2).
+body(testCase1, blockStatement1).
+body(testCase1, blockStatement3).
+statements(blockStatement2, clickStatement1).
+statements(blockStatement2, openStatement1).
+statements(blockStatement2, openStatement3).
+statements(blockStatement1, waitStatement1).
+statements(blockStatement1, ifStatement1).
+statements(blockStatement3, waitStatement2).
+variables(blockStatement2, variable1).
+variables(blockStatement1, variable3).
+url(openStatement1, variableExpression2).
+url(openStatement3, elementExpression1).
+seconds(waitStatement2, stringExpression1).
+seconds(waitStatement1, integerExpression2).
+condition(ifStatement1, booleanExpression1).
+else(ifStatement1, blockStatement4).
+ClickStatement::element(clickStatement1, elementExpression2).
+default !variable(*, *).
+variable(variableExpression2, variable3).
+variable(variableExpression1, variable1).
+name(variable1): "".
+name(variable3): "variable3".
+name(testCase1): "".
+!isDoubleClick(clickStatement1).
+StringExpression::value(stringExpression1): "stringValue".
+StringExpression::value(stringExpression2): "stringValue".
+IntegerExpression::value(integerExpression2): 11.
+BooleanExpression::value(booleanExpression1).
+tag(elementExpression1): "elementTag".
+tag(elementExpression2): "elementTag".
+label(elementExpression1): "elementLabel".
+label(elementExpression2): "elementLabel".

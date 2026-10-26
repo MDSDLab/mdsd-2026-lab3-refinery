@@ -1,0 +1,89 @@
+// Expected result
+simpleQuery(variable1).
+simpleQuery(variable2).
+simpleQuery(variable3).
+expressionType(booleanExpression1, BOOLEAN).
+expressionType(elementExpression1, ELEMENT).
+expressionType(integerExpression1, INTEGER).
+expressionType(booleanExpression2, BOOLEAN).
+variableExpressionLoop(variableExpression1).
+blockStatementWithThreeStatements(blockStatement2).
+
+default !simpleQuery(*).
+default !expressionType(*, *).
+default !equalStringExpression(*, *).
+default !equalElementExpression(*, *).
+default !waitSecondsNotInteger(*).
+default !longWait(*).
+default !variableExpressionLoop(*).
+default !blockStatementWithThreeStatements(*).
+default !emptyName(*).
+
+// Instance model
+declare testCase1, blockStatement1, blockStatement2, variable1, variable2,
+	variableExpression1, variable3, booleanExpression1, clickStatement1,
+	clickStatement2, openStatement1, variableExpression2, openStatement2,
+	openStatement3, booleanExpression2, ifStatement1, integerExpression1,
+	elementExpression1.
+!exists(Variable::new).
+!exists(TestCase::new).
+!exists(BlockStatement::new).
+!exists(OpenStatement::new).
+!exists(WaitStatement::new).
+!exists(IfStatement::new).
+!exists(ClickStatement::new).
+!exists(FillStatement::new).
+!exists(StringExpression::new).
+!exists(IntegerExpression::new).
+!exists(BooleanExpression::new).
+!exists(ElementExpression::new).
+!exists(VariableExpression::new).
+TestCase(testCase1).
+BlockStatement(blockStatement1).
+BlockStatement(blockStatement2).
+Variable(variable1).
+Variable(variable2).
+VariableExpression(variableExpression1).
+Variable(variable3).
+BooleanExpression(booleanExpression1).
+ClickStatement(clickStatement1).
+ClickStatement(clickStatement2).
+OpenStatement(openStatement1).
+VariableExpression(variableExpression2).
+OpenStatement(openStatement2).
+OpenStatement(openStatement3).
+BooleanExpression(booleanExpression2).
+IfStatement(ifStatement1).
+IntegerExpression(integerExpression1).
+ElementExpression(elementExpression1).
+Variable::value(variable1, variableExpression1).
+Variable::value(variable2, booleanExpression1).
+body(testCase1, blockStatement1).
+body(testCase1, blockStatement2).
+statements(blockStatement1, ifStatement1).
+statements(blockStatement2, clickStatement1).
+statements(blockStatement2, clickStatement2).
+statements(blockStatement2, openStatement1).
+statements(blockStatement2, openStatement2).
+statements(blockStatement2, openStatement3).
+variables(blockStatement1, variable2).
+variables(blockStatement1, variable3).
+variables(blockStatement2, variable1).
+url(openStatement1, variableExpression2).
+url(openStatement2, integerExpression1).
+url(openStatement3, elementExpression1).
+ClickStatement::element(clickStatement1, booleanExpression2).
+default !variable(*, *).
+variable(variableExpression1, variable1).
+variable(variableExpression2, variable3).
+name(testCase1): "testCase1".
+name(variable1): "i".
+name(variable2): "j".
+name(variable3): "j".
+isDoubleClick(clickStatement1).
+!isDoubleClick(clickStatement2).
+IntegerExpression::value(integerExpression1): 35.
+BooleanExpression::value(booleanExpression1): false.
+BooleanExpression::value(booleanExpression2): false.
+tag(elementExpression1): "input".
+label(elementExpression1): "Input field".
